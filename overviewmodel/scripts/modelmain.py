@@ -9,9 +9,9 @@ def main():
     epochs = 10
     batch_size = 32
     # Asumiendo que este script se ejecuta desde /overviewmodel/scripts/
-    train_dir = '../data/train'
-    val_dir = '../data/validation'
-    test_dir = '../data/test'
+    train_dir = "../data/train"
+    val_dir = "../data/validation"
+    test_dir = "../data/test"
 
     # Cargar y preparar los datos de entrenamiento y validación
     print("Cargando datos de entrenamiento y validación...")
@@ -21,7 +21,7 @@ def main():
     # Construir y entrenar el modelo
     print("Construyendo y entrenando el modelo...")
     model = build_model(num_classes)
-    model, history = train_model(train_generator, validation_generator, num_classes, epochs, batch_size)
+    model, history = train_model(train_dir, val_dir, num_classes, epochs, batch_size)
 
     # Evaluar el modelo
     print("Evaluando el modelo...")
@@ -29,7 +29,7 @@ def main():
     print(f"Test Loss: {evaluation[0]}, Test Accuracy: {evaluation[1]}")
 
     # Guardar el modelo
-    model_save_path = '../modelos/overview_model.h5'
+    model_save_path = "../modelos/overview_model.h5"
     model.save(model_save_path)
     print(f"Modelo guardado en {model_save_path}")
 
