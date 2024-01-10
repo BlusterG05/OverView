@@ -8,7 +8,7 @@ def main():
     num_classes = 20
     epochs = 10
     batch_size = 32
-    # Las rutas relativas correctas desde la ubicación del script dentro de /overview/scripts/
+    # Asumiendo que este script se ejecuta desde /overviewmodel/scripts/
     train_dir = '../data/train'
     val_dir = '../data/validation'
     test_dir = '../data/test'
@@ -21,7 +21,7 @@ def main():
     # Construir y entrenar el modelo
     print("Construyendo y entrenando el modelo...")
     model = build_model(num_classes)
-    model, history = train_model(train_dir, val_dir, num_classes, epochs, batch_size)
+    model, history = train_model(train_generator, validation_generator, num_classes, epochs, batch_size)
 
     # Evaluar el modelo
     print("Evaluando el modelo...")
