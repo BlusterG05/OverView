@@ -5,9 +5,9 @@ import os
 
 def main():
     # Configuración de los parámetros del modelo y las rutas de los datos
-    num_classes = 20
+    num_classes = 21
     epochs = 10
-    batch_size = 32
+    batch_size = 16
     # Asumiendo que este script se ejecuta desde /overviewmodel/scripts/
     train_dir = "../data/train"
     val_dir = "../data/validation"

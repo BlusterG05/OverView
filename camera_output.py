@@ -1,39 +1,51 @@
-
-# Importing necessary modules
+from tensorflow.keras.models import load_model
+from tensorflow.keras.preprocessing import image
 import cv2
-from tkinter import *
 from PIL import Image, ImageTk
+import numpy as np
+from tkinter import Label
 
 class CameraOutput:
-    def __init__(self, window):
-        # Creating a label to hold the camera output
+    def __init__(self, window, model_path, output_widget):
+        # Mapeo de índices a letras
+        self.class_mapping = ['A', 'B', 'C', 'D', 'E', 'F', 'H', 'I', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'Y']
+
+        self.window = window
+        self.output_widget = output_widget
+        self.model = load_model(model_path)
+
         self.camera_label = Label(window)
         self.camera_label.pack()
 
-        # Capturing video from the webcam
         self.cap = cv2.VideoCapture(0)
 
-        # Updating the label with new frames from the webcam
         self.update_camera_output()
 
     def update_camera_output(self):
-        # Getting a frame from the webcam
         ret, frame = self.cap.read()
-
         if ret:
-            # Converting the image from BGR color space to RGB
             frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+            img = Image.fromarray(frame)
+            imgtk = ImageTk.PhotoImage(image=img)
+            self.camera_label.imgtk = imgtk
+            self.camera_label.configure(image=imgtk)
+            
+            # Predecir letra
+            self.predict_letter(frame)
 
-            # Converting the image into a PIL format
-            image = Image.fromarray(frame)
+            self.camera_label.after(10, self.update_camera_output)
 
-            # Converting the image into a format that tkinter can use
-            photo = ImageTk.PhotoImage(image)
+    def predict_letter(self, frame):
+        # Redimensionar y preprocesar la imagen para el modelo
+        img = cv2.resize(frame, (300, 300))
+        img_array = image.img_to_array(img)
+        img_array = np.expand_dims(img_array, axis=0)
+        img_array /= 255.0
 
-            # Updating the label with the new image
-            self.camera_label.config(image=photo)
-            self.camera_label.image = photo
+        # Hacer la predicción
+        prediction = self.model.predict(img_array)
+        predicted_class = np.argmax(prediction, axis=1)
 
-        # Calling this function again in 15 milliseconds
-        self.camera_label.after(15, self.update_camera_output)
-
+        # Actualizar el widget de salida con la letra predicha
+        predicted_letter = self.class_mapping[predicted_class[0]]
+        self.output_widget.config(text=predicted_letter)
