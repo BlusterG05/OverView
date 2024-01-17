@@ -3,17 +3,16 @@ import tkinter as tk
 
 class Menu:
     def __init__(self, parent):
-        # Creating the menu frame
+       
         self.menu_frame = tk.Frame(parent, width=200, height=300, bg='white')
         self.menu_frame.pack(side=tk.TOP, fill=tk.X)
 
-        # Creating the expandable menu
+        
         self.menu = tk.Menu(self.menu_frame, tearoff=0)
         self.menu.add_command(label="Función 1", command=self.function1)
         self.menu.add_command(label="Función 2", command=self.function2)
         self.menu.add_command(label="Función 3", command=self.function3)
 
-        # Binding the right click to open the menu
         self.menu_frame.bind("<Button-3>", self.show_menu)
 
     def show_menu(self, event):
@@ -21,13 +20,13 @@ class Menu:
         self.menu.post(event.x_root, event.y_root)
 
     def function1(self):
-        # Placeholder function for Función 1 de seleccion de formato de lenguaje
+       
         pass
 
     def function2(self):
-        # Placeholder function for Función 2 
+        
         pass
 
     def function3(self):
-        # Placeholder function for Función 3
+        
         pass

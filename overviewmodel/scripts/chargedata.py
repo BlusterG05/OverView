@@ -2,7 +2,6 @@ from tensorflow.keras.preprocessing.image import ImageDataGenerator
 import os
 
 def load_dataset(directory, target_size=(300, 300), batch_size=16):
-    # Verificar si el directorio existe
     if not os.path.exists(directory):
         raise ValueError(f"El directorio proporcionado no existe: {directory}")
 
@@ -12,6 +11,6 @@ def load_dataset(directory, target_size=(300, 300), batch_size=16):
         directory,
         target_size=target_size,
         batch_size=batch_size,
-        class_mode='categorical'  # O 'binary' si solo tienes dos clases
+        class_mode='categorical'  
     )
     return generator
