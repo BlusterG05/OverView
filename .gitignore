@@ -1,3 +1,5 @@
 overviewvenv/
 dataset/
 overviewmodel/modelos/
+__pycache__/
+overviewmodel/scripts/
