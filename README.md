@@ -42,7 +42,7 @@ Ahora listo, ejecuta el main.py y prueba el modelo :D
 
 Nota: tienes que descargar el modelo del drive
    ```bash
-   pip install -r requirements.txt
+ https://drive.google.com/file/d/1ejKyj9u2URSvECuKtYejhbgMBV42MHgt/view?usp=sharing
    ```
  de overview y colocarlo en overviwmodel/modelos/ para que funcione correctamente o puedes crear un modelo con el script en overviwmodel/scripts/modelmain.py
 
