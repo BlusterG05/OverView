@@ -40,5 +40,11 @@ Siga estos pasos para configurar y utilizar **Overview**:
 
 Ahora listo, ejecuta el main.py y prueba el modelo :D
 
-Nota: tienes que descargar el modelo del drive de overview y colocarlo en overviwmodel/modelos/ para que funcione correctamente o puedes crear un modelo con el script en overviwmodel/scripts/modelmain.py
+Nota: tienes que descargar el modelo del drive
+   ```bash
+   pip install -r requirements.txt
+   ```
+ de overview y colocarlo en overviwmodel/modelos/ para que funcione correctamente o puedes crear un modelo con el script en overviwmodel/scripts/modelmain.py
+
+
 
